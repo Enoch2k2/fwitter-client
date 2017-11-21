@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { HomePage } from './containers';
+import { HomePage, Signup } from './containers';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
 
@@ -10,6 +10,7 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path="/" component={HomePage} />
+          <Route exact path="/signup" component={Signup} />
         </Switch>
       </div>
     );
