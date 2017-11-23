@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { signup } from '../actions';
+import { bindActionCreators } from 'redux';
 
 class Signup extends Component {
     constructor(props){
@@ -18,7 +20,11 @@ class Signup extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        
+        this.props.signup(this.state);
+        this.setState({
+            email: '',
+            password: ''
+        });
     }
 
     render(){
@@ -40,8 +46,14 @@ class Signup extends Component {
 
 function mapStateToProps(state){
     return {
-        user: state.user
+        currentUser: state.user.currentUser,
+        users: state.user.users,
+        errors: state.user.errors
     }
 }
 
-export default connect(mapStateToProps)(Signup);
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({signup}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
