@@ -13,6 +13,12 @@ class Signup extends Component {
         }
     }
 
+    componentDidMount(){
+        if(this.props.currentUser){
+            this.props.history.push("/tweets");
+        }
+    }
+
     handleChange = e => {
         const { name, value } = e.target;
         this.setState({[name]: value});
@@ -21,13 +27,12 @@ class Signup extends Component {
     handleSubmit = e => {
         e.preventDefault();
         this.props.signup(this.state);
-        this.setState({
-            email: '',
-            password: ''
-        });
+        this.props.history.push("/tweets");
     }
 
     render(){
+        console.log('users', this.props.users);
+        console.log('currentUser', this.props.currentUser);
         return (
             <div>
                 <h1>Fwitter Signup</h1>
@@ -46,9 +51,9 @@ class Signup extends Component {
 
 function mapStateToProps(state){
     return {
-        currentUser: state.user.currentUser,
-        users: state.user.users,
-        errors: state.user.errors
+        currentUser: state.session.currentUser,
+        users: state.session.users,
+        errors: state.session.errors
     }
 }
 

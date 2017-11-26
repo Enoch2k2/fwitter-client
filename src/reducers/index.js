@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
-import user from './UserReducer';
+import session from './SessionReducer';
+import tweets from './TweetsReducer';
 
-export default combineReducers({user});
+export default combineReducers({session, tweets});

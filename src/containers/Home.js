@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class HomePage extends Component {
+    componentDidMount(){
+        if(this.props.currentUser){
+            this.props.history.push("/tweets");
+        }
+    }
+
     render(){
         return(
             <div>
@@ -17,7 +23,7 @@ class HomePage extends Component {
 
 function mapStateToProps(state){
     return {
-        user: state.user
+        currentUser: state.session.currentUser
     }
 }
 
