@@ -14,7 +14,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.currentUser)
     return (
       <div className="App">
         {!this.props.loading ? <NavBar history={this.props.history} currentUser={this.props.currentUser}/> : <Loading />}

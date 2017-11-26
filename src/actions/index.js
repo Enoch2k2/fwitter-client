@@ -45,6 +45,7 @@ export function getUsers(){
 
 export function getCurrentUser(){
     return dispatch => {
+        dispatch({type: "LOADING"});
         return dispatch({type: "GET_CURRENT_USER"});
     }
 }
@@ -65,6 +66,7 @@ export function getTweets(){
 
 export function addTweet(tweet){
     return dispatch => {
+        dispatch({type: "LOADING_TWEETS"});
         return dispatch({type: "ADD_TWEET", payload: tweet});
     }
 }
