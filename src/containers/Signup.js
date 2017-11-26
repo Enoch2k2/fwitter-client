@@ -31,8 +31,6 @@ class Signup extends Component {
     }
 
     render(){
-        console.log('users', this.props.users);
-        console.log('currentUser', this.props.currentUser);
         return (
             <div>
                 <h1>Fwitter Signup</h1>

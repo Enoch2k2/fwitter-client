@@ -1,20 +1,45 @@
+// use fetch to make api calls
+
+import "whatwg-fetch";
+const api = 'http://localhost:3001'
 // sessions
 
 export function signup(user) {
     return dispatch => {
-        return dispatch({type: "SIGN_UP", payload: user});
+        dispatch({type: "LOADING"})
+        return fetch(`${api}/users`, {
+            method: 'POST',
+            body: JSON.stringify({user}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+          .then(res => res.json())
+          .then(payload => dispatch({type: "SIGN_UP", payload}))
     }
 }
 
 export function login(user) {
     return dispatch => {
-        return dispatch({type: "LOG_IN", payload: user});
+        dispatch({type: "LOADING"});
+        return fetch(`${api}/login`, {
+            method: 'POST',
+            body: JSON.stringify({user}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+          .then(res => res.json())
+          .then(payload => dispatch({type: "LOG_IN", payload}))
     }
 }
 
 export function getUsers(){
     return dispatch => {
-        return dispatch({type: "GET_USERS"});
+        dispatch({type: "LOADING"});
+        return fetch(`${api}/users`)
+            .then(res => res.json())
+            .then(payload => dispatch({type: "GET_USERS", payload}));
     }
 }
 
