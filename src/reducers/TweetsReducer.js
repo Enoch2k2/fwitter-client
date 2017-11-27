@@ -3,10 +3,9 @@ export default function TweetsReducer(state = {loading: false, tweets: []}, acti
         case "LOADING_TWEETS":
             return Object.assign({}, state, {loading: true});
         case "GET_TWEETS":
-            let tweets = localStorage.getItem('tweets') ? JSON.parse(localStorage.getItem('tweets')) : [];
-            return Object.assign({}, state, {loading: false, tweets});
+            return Object.assign({}, state, {loading: false, tweets: action.payload});
         case "ADD_TWEET":
-            return Object.assign({}, state, {loading: false, tweets: [...state.tweets, action.payload]});
+            return Object.assign({}, state, {loading: false, tweets: [action.payload, ...state.tweets]});
         default:
             return state;
     }

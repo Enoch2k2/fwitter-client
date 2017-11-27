@@ -9,7 +9,8 @@ class Signup extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            username: ''
         }
     }
 
@@ -38,6 +39,8 @@ class Signup extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="email">Email: </label>
                     <input type="email" name="email" value={this.state.email} onChange={e => this.handleChange(e)} id="email" />
+                    <label htmlFor="username">Username: </label>
+                    <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} id="username" />
                     <label htmlFor="password">Password: </label>
                     <input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} id="password" />
                     <input type="submit" value="sign up" />

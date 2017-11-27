@@ -1,4 +1,4 @@
-export default function SessionReducer(state={loading: false, errors: [], currentUser: null, token: '', users: []}, action){
+export default function SessionReducer(state={loading: false, errors: [], currentUser: null, token: '', users: [], user: null}, action){
     switch(action.type){
         case "LOADING":
             return Object.assign({}, state, {loading: true});
@@ -23,6 +23,12 @@ export default function SessionReducer(state={loading: false, errors: [], curren
             return Object.assign({}, state, {loading: false, currentUser: null});
         case "GET_USERS":
             return Object.assign({}, state, {loading: false, users: action.payload});
+        case "GET_USER":
+            if(action.payload.errors){
+                return Object.assign({}, state, {loading: false, errors: action.payload});
+            } else {
+                return Object.assign({}, state, {loading: false, user: action.payload});
+            }
         case "GET_CURRENT_USER":
             let currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null;
             return Object.assign({}, state, {loading: false, currentUser});

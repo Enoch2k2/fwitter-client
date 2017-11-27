@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { NavBar, Loading } from './components';
-import { HomePage, Signup, Login, Tweets } from './containers';
+import { HomePage, Signup, Login, Tweets, UserShow } from './containers';
 import { Switch, Route } from 'react-router-dom';
 import { getUsers, getCurrentUser } from './actions';
 import './App.css';
@@ -22,6 +22,7 @@ class App extends Component {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/tweets" component={Tweets} />
+          <Route exact path="/users/:id" component={UserShow} />
         </Switch> : null}
       </div>
     );

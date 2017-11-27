@@ -43,6 +43,15 @@ export function getUsers(){
     }
 }
 
+export function getUser(id){
+    return dispatch => {
+        dispatch({type: "LOADING"})
+        return fetch(`${api}/users/${id}`)
+            .then(res => res.json())
+            .then(payload => dispatch({type: "GET_USER", payload}))
+    }
+}
+
 export function getCurrentUser(){
     return dispatch => {
         dispatch({type: "LOADING"});
@@ -60,14 +69,25 @@ export function logout(){
 
 export function getTweets(){
     return dispatch => {
-        return dispatch({type: "GET_TWEETS"});
+        dispatch({type: "LOADING_TWEETS"});
+        return fetch(`${api}/tweets`)
+            .then(res => res.json())
+            .then(payload => dispatch({type: "GET_TWEETS", payload}))
     }
 }
 
 export function addTweet(tweet){
     return dispatch => {
-        dispatch({type: "LOADING_TWEETS"});
-        return dispatch({type: "ADD_TWEET", payload: tweet});
+        dispatch({type: "LOADING_TWEETS"})
+        return fetch(`${api}/tweets`, {
+            method: 'POST',
+            body: JSON.stringify({tweet}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+          .then(res => res.json())
+          .then(payload => dispatch({type: "ADD_TWEET", payload}))
     }
 }
 

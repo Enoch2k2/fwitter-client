@@ -16,16 +16,16 @@ class Tweets extends Component {
     render(){
         const {tweets, currentUser, loading, tweetsLoading} = this.props;
         const tweetsList = tweets.map((tweet, i) => {
-            return <Tweet key={i} tweet={tweet} />
+            return <Tweet key={i} tweet={tweet} user={tweet.user} current_user_id={this.props.currentUser.id} />
         })
         return (
             <div>
                 { loading || !currentUser ? <Loading /> :
                 <div>
-                    <h3>Welcome {currentUser.email}!</h3>
+                    <h3>Welcome {currentUser.username}!</h3>
                     <h3>Tweets</h3>
                     <TweetForm />
-                    { tweetsList }
+                    { tweetsLoading ? null : tweetsList }
                 </div> }
             </div>
         )
